@@ -1,0 +1,10 @@
+﻿DATA_BLOCK "单梯控制_DB_2号梯"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+"单梯控制"
+
+BEGIN
+
+END_DATA_BLOCK
+

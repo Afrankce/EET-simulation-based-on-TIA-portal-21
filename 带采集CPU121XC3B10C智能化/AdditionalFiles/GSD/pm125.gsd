@@ -1,0 +1,179 @@
+;===============================================================================
+; GSD文件 ：PM-125 （<=168 DI/168 DO）
+; 产品型号：PM-125
+; 公司名称：上海泗博自动化技术公司
+; 版本    ：2010年09月 V2.0
+; 文件名  ：PM125V20.GSD
+;===============================================================================
+
+
+#Profibus_DP
+
+
+;===============================================================================
+;==== General DP Keywords ======================================================
+;===============================================================================
+
+GSD_Revision        = 2
+Vendor_Name         = "Shanghai Sibotech Ltd. Co."
+Model_Name          = "PM125"
+Revision            = "V2.0"
+Ident_Number        = 0x0187
+Protocol_Ident      = 0    ; DP protocol
+Station_Type        = 0    ; Slave device
+Hardware_Release    = "V1.1"
+Software_Release    = "V2.0"
+
+
+;===============================================================================
+;==== Supported baudrates ======================================================
+;===============================================================================
+
+9.6_supp            = 1
+19.2_supp           = 1
+93.75_supp          = 1
+187.5_supp          = 1
+500_supp            = 1
+45.45_supp          = 1
+1.5M_supp           = 1
+3M_supp             = 1
+6M_supp             = 1
+12M_supp            = 1
+
+
+;===============================================================================
+;==== Maximum responder time for supported baudrates ===========================
+;===============================================================================
+
+MaxTsdr_9.6         = 15
+MaxTsdr_19.2        = 15
+MaxTsdr_45.45       = 15
+MaxTsdr_93.75       = 15
+MaxTsdr_187.5       = 15
+MaxTsdr_500         = 15
+MaxTsdr_1.5M        = 20
+MaxTsdr_3M          = 35
+MaxTsdr_6M          = 50
+MaxTsdr_12M         = 95
+
+
+;===============================================================================
+;==== Slave specific values ====================================================
+;===============================================================================
+
+Implementation_Type = "VPC3+"
+Bitmap_Device       = "ET200B_N"
+OrderNumber         = "PM125"
+Freeze_Mode_supp    = 1    ; supported
+Sync_Mode_supp      = 1    ; supported
+Auto_Baud_supp      = 1    ; supported
+Fail_safe           = 0
+; Maximum polling frequency
+Min_Slave_Intervall = 6    ; 600 us
+Max_Diag_Data_Len   = 6
+Slave_Family        = 0@CONVERTER
+
+
+;===============================================================================
+;==== User-Prm-Data ============================================================
+;===============================================================================
+
+User_Prm_Data_Len   = 0
+
+
+;===============================================================================
+;==== Maximum supported sizes ==================================================
+;===============================================================================
+
+Modular_Station     = 1
+Max_Module          = 50
+Max_Input_Len       = 168
+Max_Output_Len      = 168
+Max_Data_Len        = 336
+Modul_Offset        = 0
+
+
+;===============================================================================
+;==== Module-Definition-List ===================================================
+;===============================================================================
+
+Module = " Status/Control(Optional) "         0x41,0x00,0x00,0x81,0x00,0x00
+1
+EndModule
+
+Module = "4 Words Input, 4 Words Output"      0x53,0x63
+2
+EndModule
+
+Module = "8 Words Input, 8 Words Output"      0x57,0x67
+3
+EndModule
+
+Module = "16 Words Input, 16 Words Output"    0x5F,0x6F
+4
+EndModule
+
+Module = "32 Words Input, 32 Words Output"    0x40,0x5F,0x80,0x5F
+5
+EndModule
+
+Module = "64 Words Input, 64 Words Output"    0x40,0x7F,0x80,0x7F
+6
+EndModule
+
+Module = " 1 Byte Input "                     0x10
+7
+EndModule
+
+Module = " 1 Word Input "                     0x50
+8
+EndModule
+
+Module = " 8 Words Input "                    0x57
+9
+EndModule
+
+Module = " 1 Byte Output "                    0x20
+10
+EndModule
+
+Module = " 1 Word Output "                    0x60
+11
+EndModule
+
+Module = " 8 Words Output "                   0x67
+12
+EndModule
+
+Module = " 2 Words Input Consistent "         0xD1
+13
+EndModule
+
+Module = " 4 Words Input Consistent "         0xD3
+14
+EndModule
+
+Module = " 8 Words Input Consistent "         0xD7
+15
+EndModule
+
+Module = " 16 Words Input Consistent "        0xDF
+16
+EndModule
+
+Module = " 2 Words Output Consistent "        0xE1
+17
+EndModule
+
+Module = " 4 Words Output Consistent "        0xE3
+18
+EndModule
+
+Module = " 8 Words Output Consistent "        0xE7
+19
+EndModule
+
+Module = " 16 Words Output Consistent "       0xEF
+20
+EndModule
+
