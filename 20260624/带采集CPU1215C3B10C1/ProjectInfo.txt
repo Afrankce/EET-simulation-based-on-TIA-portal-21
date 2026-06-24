@@ -1,0 +1,23 @@
+TiaPortal:
+  MinimumRequired:
+  - Version: V21.0
+  - TechnicalVersion: 21.00.00.00
+  LastUsed:
+  - Version: V21
+  - TechnicalVersion: 21.00.00.00
+
+UsedProducts:
+- Name: STEP 7 Professional
+  Version: V21
+  TechnicalVersion: 21.00.00.00
+- Name: Totally Integrated Automation Portal
+  Version: V21
+  TechnicalVersion: 21.00.00.00
+
+UsedSupportPackages:
+- Name: pm125.gsd
+  Version: V2.0
+  TechnicalVersion: 11.0.0.0.0
+- Name: pm125v31.gsd
+  Version: V3.1
+  TechnicalVersion: 11.0.0.0.0
