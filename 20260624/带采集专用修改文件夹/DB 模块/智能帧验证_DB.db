@@ -1,0 +1,10 @@
+DATA_BLOCK "智能帧验证_DB"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+"FB_智能帧验证"
+
+BEGIN
+
+END_DATA_BLOCK
+

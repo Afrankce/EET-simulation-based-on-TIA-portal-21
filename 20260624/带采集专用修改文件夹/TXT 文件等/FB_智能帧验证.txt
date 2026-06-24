@@ -1,0 +1,108 @@
+FUNCTION_BLOCK "FB_智能帧验证"
+
+VAR
+    心跳超时TON : TON_TIME;
+END_VAR
+
+VAR_TEMP
+    楼层 : Int;
+    帧基础有效 : Bool;
+    标志有效 : Bool;
+    可用度有效 : Bool;
+    心跳变化 : Bool;
+    上呼索引 : Int;
+    下呼索引 : Int;
+END_VAR
+
+
+// Python写入寄存器[40..79]。
+// 第一版强校验魔数、版本、首尾帧号、flags、可用度和心跳。
+// checksum暂不作为强制门槛，避免TIA WORD/UINT转换导致误判。
+"DB_群控状态".智能帧有效 := FALSE;
+"DB_群控状态".智能调度允许 := FALSE;
+"DB_群控状态".智能降级 := TRUE;
+"DB_群控状态".智能错误代码 := WORD#16#0000;
+
+"DB_群控状态".Python帧序号 := "DB_Modbus采集".寄存器[42];
+"DB_群控状态".Python心跳 := "DB_Modbus采集".寄存器[43];
+"DB_群控状态".Python预测序号 := "DB_Modbus采集".寄存器[44];
+"DB_群控状态".Python可用度 := WORD_TO_INT("DB_Modbus采集".寄存器[46]);
+"DB_群控状态".Python主场景 := WORD_TO_INT("DB_Modbus采集".寄存器[47]);
+
+#帧基础有效 :=
+("DB_Modbus采集".寄存器[40] = WORD#16#A55A)
+AND ("DB_Modbus采集".寄存器[41] = WORD#16#0001)
+AND ("DB_Modbus采集".寄存器[42] = "DB_Modbus采集".寄存器[79]);
+
+IF NOT #帧基础有效 THEN
+    "DB_群控状态".智能错误代码 := WORD#16#0001;
+END_IF;
+
+// flags位0..5必须有效，位6表示降级，不能为1。
+#标志有效 :=
+(("DB_Modbus采集".寄存器[45] AND WORD#16#003F) = WORD#16#003F)
+AND (("DB_Modbus采集".寄存器[45] AND WORD#16#0040) = WORD#16#0000);
+
+IF #帧基础有效 AND NOT #标志有效 THEN
+    "DB_群控状态".智能错误代码 := WORD#16#0002;
+END_IF;
+
+#可用度有效 := "DB_群控状态".Python可用度 >= "DB_系统配置".智能可用度最小值;
+
+IF #帧基础有效 AND #标志有效 AND NOT #可用度有效 THEN
+    "DB_群控状态".智能错误代码 := WORD#16#0003;
+END_IF;
+
+#心跳变化 := "DB_群控状态".Python心跳 <> "DB_群控状态".Python心跳上次;
+
+IF #心跳变化 THEN
+    "DB_群控状态".Python心跳上次 := "DB_群控状态".Python心跳;
+END_IF;
+
+#心跳超时TON(IN := NOT #心跳变化, PT := "DB_系统配置".智能心跳超时);
+"DB_群控状态".Python心跳超时 := #心跳超时TON.Q;
+
+IF #帧基础有效 AND #标志有效 AND #可用度有效 AND "DB_群控状态".Python心跳超时 THEN
+    "DB_群控状态".智能错误代码 := WORD#16#0004;
+END_IF;
+
+IF #帧基础有效 AND #标志有效 AND #可用度有效 AND NOT "DB_群控状态".Python心跳超时 THEN
+    "DB_群控状态".智能帧有效 := TRUE;
+    "DB_群控状态".智能调度允许 := TRUE;
+    "DB_群控状态".智能降级 := FALSE;
+END_IF;
+
+// 上行需求评分：寄存器[48..56] -> 1..9层
+FOR #楼层 := 1 TO 9 DO
+    #上呼索引 := #楼层 + 47;
+    "DB_群控状态".智能需求上[#楼层] := WORD_TO_INT("DB_Modbus采集".寄存器[#上呼索引]);
+END_FOR;
+
+// 下行需求评分：寄存器[57..65] -> 2..10层
+FOR #楼层 := 2 TO 10 DO
+    #下呼索引 := #楼层 + 55;
+    "DB_群控状态".智能需求下[#楼层] := WORD_TO_INT("DB_Modbus采集".寄存器[#下呼索引]);
+END_FOR;
+
+"DB_群控状态".智能权重等待 := WORD_TO_INT("DB_Modbus采集".寄存器[73]);
+"DB_群控状态".智能权重距离 := WORD_TO_INT("DB_Modbus采集".寄存器[74]);
+"DB_群控状态".智能权重反向 := WORD_TO_INT("DB_Modbus采集".寄存器[75]);
+"DB_群控状态".智能权重启停 := WORD_TO_INT("DB_Modbus采集".寄存器[76]);
+"DB_群控状态".智能权重预测 := WORD_TO_INT("DB_Modbus采集".寄存器[77]);
+
+// 防止Python未写权重时出现全0，导致代价函数失效。
+IF "DB_群控状态".智能权重等待 <= 0 THEN
+    "DB_群控状态".智能权重等待 := 100;
+END_IF;
+IF "DB_群控状态".智能权重距离 <= 0 THEN
+    "DB_群控状态".智能权重距离 := 100;
+END_IF;
+IF "DB_群控状态".智能权重反向 <= 0 THEN
+    "DB_群控状态".智能权重反向 := 100;
+END_IF;
+IF "DB_群控状态".智能权重启停 <= 0 THEN
+    "DB_群控状态".智能权重启停 := 100;
+END_IF;
+IF "DB_群控状态".智能权重预测 <= 0 THEN
+    "DB_群控状态".智能权重预测 := 20;
+END_IF;

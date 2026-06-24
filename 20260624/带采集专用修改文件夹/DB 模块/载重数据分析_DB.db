@@ -1,0 +1,10 @@
+﻿DATA_BLOCK "载重数据分析_DB"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+"载重数据分析"
+
+BEGIN
+
+END_DATA_BLOCK
+

@@ -1,0 +1,10 @@
+﻿DATA_BLOCK "本层停靠判断_DB"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+"本层停靠判断"
+
+BEGIN
+
+END_DATA_BLOCK
+

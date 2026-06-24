@@ -1,0 +1,5 @@
+#ModbusServer(
+              DISCONNECT := FALSE,
+              CONNECT := "DB_Modbus采集".连接参数,
+              MB_HOLD_REG := P#DB1.DBX0.0 BYTE 160
+);

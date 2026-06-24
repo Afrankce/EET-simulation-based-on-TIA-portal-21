@@ -1,0 +1,10 @@
+﻿DATA_BLOCK "楼层显示_DB"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+"楼层显示"
+
+BEGIN
+
+END_DATA_BLOCK
+

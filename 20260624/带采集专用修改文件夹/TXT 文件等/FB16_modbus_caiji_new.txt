@@ -1,0 +1,748 @@
+// 地址0为场景编号，本块不覆盖。
+"DB_Modbus采集".寄存器[1] := INT_TO_WORD("DB_系统配置".群控调度策略);
+"DB_Modbus采集".寄存器[2] := INT_TO_WORD("DB_群控状态".梯当前楼层[1]);
+"DB_Modbus采集".寄存器[5] := INT_TO_WORD("DB_群控状态".梯运行方向[1]);
+"DB_Modbus采集".寄存器[8] := "IN"."1号梯当前载重量";
+"DB_Modbus采集".寄存器[3] := INT_TO_WORD("DB_群控状态".梯当前楼层[2]);
+"DB_Modbus采集".寄存器[6] := INT_TO_WORD("DB_群控状态".梯运行方向[2]);
+"DB_Modbus采集".寄存器[9] := "IN"."2号梯当前载重量";
+"DB_Modbus采集".寄存器[4] := INT_TO_WORD("DB_群控状态".梯当前楼层[3]);
+"DB_Modbus采集".寄存器[7] := INT_TO_WORD("DB_群控状态".梯运行方向[3]);
+"DB_Modbus采集".寄存器[10] := "IN"."3号梯当前载重量";
+
+"DB_Modbus采集".寄存器[11] := WORD#16#0000;
+IF "DB_群控状态".梯是否服务中[1] THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".梯是否故障[1] THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".梯是否满载[1] THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".梯是否检修[1] THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0008;
+END_IF;
+IF "OUT"."1号梯电机启动信号" THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0010;
+END_IF;
+IF "OUT"."1号梯上行接触器" THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0020;
+END_IF;
+IF "OUT"."1号梯下行接触器" THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0040;
+END_IF;
+IF "OUT"."1号梯高速接触器" THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0080;
+END_IF;
+IF "OUT"."1号梯低速接触器" THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0100;
+END_IF;
+IF "OUT"."1号梯开门继电器" THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0200;
+END_IF;
+IF "OUT"."1号梯关门继电器" THEN
+    "DB_Modbus采集".寄存器[11] := "DB_Modbus采集".寄存器[11] OR WORD#16#0400;
+END_IF;
+
+"DB_Modbus采集".寄存器[12] := WORD#16#0000;
+IF "DB_群控状态".梯是否服务中[2] THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".梯是否故障[2] THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".梯是否满载[2] THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".梯是否检修[2] THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0008;
+END_IF;
+IF "OUT"."2号梯电机启动信号" THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0010;
+END_IF;
+IF "OUT"."2号梯上行接触器" THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0020;
+END_IF;
+IF "OUT"."2号梯下行接触器" THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0040;
+END_IF;
+IF "OUT"."2号梯高速接触器" THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0080;
+END_IF;
+IF "OUT"."2号梯低速接触器" THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0100;
+END_IF;
+IF "OUT"."2号梯开门继电器" THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0200;
+END_IF;
+IF "OUT"."2号梯关门继电器" THEN
+    "DB_Modbus采集".寄存器[12] := "DB_Modbus采集".寄存器[12] OR WORD#16#0400;
+END_IF;
+
+"DB_Modbus采集".寄存器[13] := WORD#16#0000;
+IF "DB_群控状态".梯是否服务中[3] THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".梯是否故障[3] THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".梯是否满载[3] THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".梯是否检修[3] THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0008;
+END_IF;
+IF "OUT"."3号梯电机启动信号" THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0010;
+END_IF;
+IF "OUT"."3号梯上行接触器" THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0020;
+END_IF;
+IF "OUT"."3号梯下行接触器" THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0040;
+END_IF;
+IF "OUT"."3号梯高速接触器" THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0080;
+END_IF;
+IF "OUT"."3号梯低速接触器" THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0100;
+END_IF;
+IF "OUT"."3号梯开门继电器" THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0200;
+END_IF;
+IF "OUT"."3号梯关门继电器" THEN
+    "DB_Modbus采集".寄存器[13] := "DB_Modbus采集".寄存器[13] OR WORD#16#0400;
+END_IF;
+
+"DB_Modbus采集".寄存器[14] := WORD#16#0000;
+IF "DB_群控状态".外呼上已登记[1] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".外呼上已登记[2] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".外呼上已登记[3] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".外呼上已登记[4] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0008;
+END_IF;
+IF "DB_群控状态".外呼上已登记[5] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0010;
+END_IF;
+IF "DB_群控状态".外呼上已登记[6] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0020;
+END_IF;
+IF "DB_群控状态".外呼上已登记[7] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0040;
+END_IF;
+IF "DB_群控状态".外呼上已登记[8] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0080;
+END_IF;
+IF "DB_群控状态".外呼上已登记[9] THEN
+    "DB_Modbus采集".寄存器[14] := "DB_Modbus采集".寄存器[14] OR WORD#16#0100;
+END_IF;
+"DB_Modbus采集".寄存器[15] := WORD#16#0000;
+IF "DB_群控状态".外呼下已登记[2] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".外呼下已登记[3] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".外呼下已登记[4] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0008;
+END_IF;
+IF "DB_群控状态".外呼下已登记[5] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0010;
+END_IF;
+IF "DB_群控状态".外呼下已登记[6] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0020;
+END_IF;
+IF "DB_群控状态".外呼下已登记[7] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0040;
+END_IF;
+IF "DB_群控状态".外呼下已登记[8] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0080;
+END_IF;
+IF "DB_群控状态".外呼下已登记[9] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0100;
+END_IF;
+IF "DB_群控状态".外呼下已登记[10] THEN
+    "DB_Modbus采集".寄存器[15] := "DB_Modbus采集".寄存器[15] OR WORD#16#0200;
+END_IF;
+
+"DB_Modbus采集".寄存器[16] := WORD#16#0000;
+IF "OUT"."1号梯1层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0001;
+END_IF;
+IF "OUT"."1号梯2层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0002;
+END_IF;
+IF "OUT"."1号梯3层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0004;
+END_IF;
+IF "OUT"."1号梯4层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0008;
+END_IF;
+IF "OUT"."1号梯5层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0010;
+END_IF;
+IF "OUT"."1号梯6层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0020;
+END_IF;
+IF "OUT"."1号梯7层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0040;
+END_IF;
+IF "OUT"."1号梯8层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0080;
+END_IF;
+IF "OUT"."1号梯9层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0100;
+END_IF;
+IF "OUT"."1号梯10层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[16] := "DB_Modbus采集".寄存器[16] OR WORD#16#0200;
+END_IF;
+
+"DB_Modbus采集".寄存器[17] := WORD#16#0000;
+IF "OUT"."2号梯1层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0001;
+END_IF;
+IF "OUT"."2号梯2层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0002;
+END_IF;
+IF "OUT"."2号梯3层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0004;
+END_IF;
+IF "OUT"."2号梯4层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0008;
+END_IF;
+IF "OUT"."2号梯5层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0010;
+END_IF;
+IF "OUT"."2号梯6层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0020;
+END_IF;
+IF "OUT"."2号梯7层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0040;
+END_IF;
+IF "OUT"."2号梯8层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0080;
+END_IF;
+IF "OUT"."2号梯9层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0100;
+END_IF;
+IF "OUT"."2号梯10层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[17] := "DB_Modbus采集".寄存器[17] OR WORD#16#0200;
+END_IF;
+
+"DB_Modbus采集".寄存器[18] := WORD#16#0000;
+IF "OUT"."3号梯1层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0001;
+END_IF;
+IF "OUT"."3号梯2层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0002;
+END_IF;
+IF "OUT"."3号梯3层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0004;
+END_IF;
+IF "OUT"."3号梯4层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0008;
+END_IF;
+IF "OUT"."3号梯5层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0010;
+END_IF;
+IF "OUT"."3号梯6层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0020;
+END_IF;
+IF "OUT"."3号梯7层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0040;
+END_IF;
+IF "OUT"."3号梯8层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0080;
+END_IF;
+IF "OUT"."3号梯9层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0100;
+END_IF;
+IF "OUT"."3号梯10层按钮指示灯" THEN
+    "DB_Modbus采集".寄存器[18] := "DB_Modbus采集".寄存器[18] OR WORD#16#0200;
+END_IF;
+
+"DB_Modbus采集".寄存器[19] := WORD#16#0000;
+"DB_Modbus采集".寄存器[20] := WORD#16#0000;
+"DB_Modbus采集".寄存器[21] := WORD#16#0000;
+"DB_Modbus采集".寄存器[22] := WORD#16#0000;
+"DB_Modbus采集".寄存器[23] := WORD#16#0000;
+"DB_Modbus采集".寄存器[24] := WORD#16#0000;
+IF "DB_群控状态".外呼上分配给梯号[1] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[1] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[1] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[2] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[2] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[2] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[3] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[3] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[3] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[4] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0008;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[4] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0008;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[4] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0008;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[5] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0010;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[5] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0010;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[5] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0010;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[6] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0020;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[6] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0020;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[6] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0020;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[7] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0040;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[7] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0040;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[7] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0040;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[8] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0080;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[8] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0080;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[8] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0080;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[9] = 1 THEN
+    "DB_Modbus采集".寄存器[19] := "DB_Modbus采集".寄存器[19] OR WORD#16#0100;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[9] = 2 THEN
+    "DB_Modbus采集".寄存器[20] := "DB_Modbus采集".寄存器[20] OR WORD#16#0100;
+END_IF;
+IF "DB_群控状态".外呼上分配给梯号[9] = 3 THEN
+    "DB_Modbus采集".寄存器[21] := "DB_Modbus采集".寄存器[21] OR WORD#16#0100;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[2] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[2] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[2] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[3] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[3] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[3] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0004;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[4] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0008;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[4] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0008;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[4] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0008;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[5] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0010;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[5] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0010;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[5] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0010;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[6] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0020;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[6] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0020;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[6] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0020;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[7] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0040;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[7] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0040;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[7] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0040;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[8] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0080;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[8] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0080;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[8] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0080;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[9] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0100;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[9] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0100;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[9] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0100;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[10] = 1 THEN
+    "DB_Modbus采集".寄存器[22] := "DB_Modbus采集".寄存器[22] OR WORD#16#0200;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[10] = 2 THEN
+    "DB_Modbus采集".寄存器[23] := "DB_Modbus采集".寄存器[23] OR WORD#16#0200;
+END_IF;
+IF "DB_群控状态".外呼下分配给梯号[10] = 3 THEN
+    "DB_Modbus采集".寄存器[24] := "DB_Modbus采集".寄存器[24] OR WORD#16#0200;
+END_IF;
+
+"DB_Modbus采集".寄存器[25] := WORD#16#0000;
+IF "OUT"."1号梯电机启动信号" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0001;
+END_IF;
+IF "OUT"."1号梯上行接触器" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0002;
+END_IF;
+IF "OUT"."1号梯下行接触器" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0004;
+END_IF;
+IF "OUT"."1号梯高速接触器" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0008;
+END_IF;
+IF "OUT"."1号梯低速接触器" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0010;
+END_IF;
+IF "OUT"."1号梯开门继电器" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0020;
+END_IF;
+IF "OUT"."1号梯关门继电器" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0040;
+END_IF;
+IF "OUT"."1号梯1级减速制动" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0080;
+END_IF;
+IF "OUT"."1号梯2级减速制动" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0100;
+END_IF;
+IF "OUT"."1号梯3级减速制动" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0200;
+END_IF;
+IF "OUT"."1号梯照明指示" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0400;
+END_IF;
+IF "OUT"."1号梯风扇指示" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#0800;
+END_IF;
+IF "OUT"."1号梯满载指示" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#1000;
+END_IF;
+IF "OUT"."1号梯故障指示" THEN
+    "DB_Modbus采集".寄存器[25] := "DB_Modbus采集".寄存器[25] OR WORD#16#2000;
+END_IF;
+
+"DB_Modbus采集".寄存器[26] := WORD#16#0000;
+IF "OUT"."2号梯电机启动信号" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0001;
+END_IF;
+IF "OUT"."2号梯上行接触器" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0002;
+END_IF;
+IF "OUT"."2号梯下行接触器" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0004;
+END_IF;
+IF "OUT"."2号梯高速接触器" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0008;
+END_IF;
+IF "OUT"."2号梯低速接触器" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0010;
+END_IF;
+IF "OUT"."2号梯开门继电器" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0020;
+END_IF;
+IF "OUT"."2号梯关门继电器" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0040;
+END_IF;
+IF "OUT"."2号梯1级减速制动" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0080;
+END_IF;
+IF "OUT"."2号梯2级减速制动" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0100;
+END_IF;
+IF "OUT"."2号梯3级减速制动" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0200;
+END_IF;
+IF "OUT"."2号梯照明指示" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0400;
+END_IF;
+IF "OUT"."2号梯风扇指示" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#0800;
+END_IF;
+IF "OUT"."2号梯满载指示" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#1000;
+END_IF;
+IF "OUT"."2号梯故障指示" THEN
+    "DB_Modbus采集".寄存器[26] := "DB_Modbus采集".寄存器[26] OR WORD#16#2000;
+END_IF;
+
+"DB_Modbus采集".寄存器[27] := WORD#16#0000;
+IF "OUT"."3号梯电机启动信号" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0001;
+END_IF;
+IF "OUT"."3号梯上行接触器" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0002;
+END_IF;
+IF "OUT"."3号梯下行接触器" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0004;
+END_IF;
+IF "OUT"."3号梯高速接触器" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0008;
+END_IF;
+IF "OUT"."3号梯低速接触器" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0010;
+END_IF;
+IF "OUT"."3号梯开门继电器" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0020;
+END_IF;
+IF "OUT"."3号梯关门继电器" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0040;
+END_IF;
+IF "OUT"."3号梯1级减速制动" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0080;
+END_IF;
+IF "OUT"."3号梯2级减速制动" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0100;
+END_IF;
+IF "OUT"."3号梯3级减速制动" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0200;
+END_IF;
+IF "OUT"."3号梯照明指示" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0400;
+END_IF;
+IF "OUT"."3号梯风扇指示" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#0800;
+END_IF;
+IF "OUT"."3号梯满载指示" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#1000;
+END_IF;
+IF "OUT"."3号梯故障指示" THEN
+    "DB_Modbus采集".寄存器[27] := "DB_Modbus采集".寄存器[27] OR WORD#16#2000;
+END_IF;
+
+"DB_Modbus采集".寄存器[28] := WORD#16#0000;
+IF "IN"."1号梯轿内开门按钮" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0001;
+END_IF;
+IF "IN"."1号梯轿内关门按钮" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0002;
+END_IF;
+IF "IN"."1号梯光幕信号" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0004;
+END_IF;
+IF "IN"."1号梯轿厢门锁信号" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0008;
+END_IF;
+IF "IN"."1号梯开门到位" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0010;
+END_IF;
+IF "IN"."1号梯关门到位" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0020;
+END_IF;
+IF "IN"."1号梯上平层信号" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0040;
+END_IF;
+IF "IN"."1号梯下平层信号" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0080;
+END_IF;
+IF "IN"."1号梯检修信号" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0100;
+END_IF;
+IF "IN"."1号梯上端站第1限位" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0200;
+END_IF;
+IF "IN"."1号梯上端站第2限位" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0400;
+END_IF;
+IF "IN"."1号梯下端站第1限位" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#0800;
+END_IF;
+IF "IN"."1号梯下端站第2限位" THEN
+    "DB_Modbus采集".寄存器[28] := "DB_Modbus采集".寄存器[28] OR WORD#16#1000;
+END_IF;
+
+"DB_Modbus采集".寄存器[29] := WORD#16#0000;
+IF "IN"."2号梯轿内开门按钮" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0001;
+END_IF;
+IF "IN"."2号梯轿内关门按钮" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0002;
+END_IF;
+IF "IN"."2号梯光幕信号" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0004;
+END_IF;
+IF "IN"."2号梯轿厢门锁信号" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0008;
+END_IF;
+IF "IN"."2号梯开门到位" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0010;
+END_IF;
+IF "IN"."2号梯关门到位" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0020;
+END_IF;
+IF "IN"."2号梯上平层信号" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0040;
+END_IF;
+IF "IN"."2号梯下平层信号" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0080;
+END_IF;
+IF "IN"."2号梯检修信号" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0100;
+END_IF;
+IF "IN"."2号梯上端站第1限位" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0200;
+END_IF;
+IF "IN"."2号梯上端站第2限位" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0400;
+END_IF;
+IF "IN"."2号梯下端站第1限位" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#0800;
+END_IF;
+IF "IN"."2号梯下端站第2限位" THEN
+    "DB_Modbus采集".寄存器[29] := "DB_Modbus采集".寄存器[29] OR WORD#16#1000;
+END_IF;
+
+"DB_Modbus采集".寄存器[30] := WORD#16#0000;
+IF "IN"."3号梯轿内开门按钮" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0001;
+END_IF;
+IF "IN"."3号梯轿内关门按钮" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0002;
+END_IF;
+IF "IN"."3号梯光幕信号" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0004;
+END_IF;
+IF "IN"."3号梯轿厢门锁信号" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0008;
+END_IF;
+IF "IN"."3号梯开门到位" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0010;
+END_IF;
+IF "IN"."3号梯关门到位" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0020;
+END_IF;
+IF "IN"."3号梯上平层信号" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0040;
+END_IF;
+IF "IN"."3号梯下平层信号" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0080;
+END_IF;
+IF "IN"."3号梯检修信号" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0100;
+END_IF;
+IF "IN"."3号梯上端站第1限位" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0200;
+END_IF;
+IF "IN"."3号梯上端站第2限位" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0400;
+END_IF;
+IF "IN"."3号梯下端站第1限位" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#0800;
+END_IF;
+IF "IN"."3号梯下端站第2限位" THEN
+    "DB_Modbus采集".寄存器[30] := "DB_Modbus采集".寄存器[30] OR WORD#16#1000;
+END_IF;
+
+"DB_Modbus采集".寄存器[31] := INT_TO_WORD("DB_群控状态".群控扫描计数器);
+"DB_Modbus采集".寄存器[32] := INT_TO_WORD("DB_系统配置".群控外呼超时重分配_s);
+"DB_Modbus采集".寄存器[33] := WORD#16#0000;
+IF "DB_群控状态".梯是否服务中[1] THEN
+    "DB_Modbus采集".寄存器[33] := "DB_Modbus采集".寄存器[33] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".梯是否服务中[2] THEN
+    "DB_Modbus采集".寄存器[33] := "DB_Modbus采集".寄存器[33] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".梯是否服务中[3] THEN
+    "DB_Modbus采集".寄存器[33] := "DB_Modbus采集".寄存器[33] OR WORD#16#0004;
+END_IF;
+"DB_Modbus采集".寄存器[34] := WORD#16#0000;
+IF "DB_群控状态".梯是否故障[1] THEN
+    "DB_Modbus采集".寄存器[34] := "DB_Modbus采集".寄存器[34] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".梯是否故障[2] THEN
+    "DB_Modbus采集".寄存器[34] := "DB_Modbus采集".寄存器[34] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".梯是否故障[3] THEN
+    "DB_Modbus采集".寄存器[34] := "DB_Modbus采集".寄存器[34] OR WORD#16#0004;
+END_IF;
+"DB_Modbus采集".寄存器[35] := WORD#16#0000;
+IF "DB_群控状态".梯是否满载[1] THEN
+    "DB_Modbus采集".寄存器[35] := "DB_Modbus采集".寄存器[35] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".梯是否满载[2] THEN
+    "DB_Modbus采集".寄存器[35] := "DB_Modbus采集".寄存器[35] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".梯是否满载[3] THEN
+    "DB_Modbus采集".寄存器[35] := "DB_Modbus采集".寄存器[35] OR WORD#16#0004;
+END_IF;
+"DB_Modbus采集".寄存器[36] := WORD#16#0000;
+IF "DB_群控状态".梯是否检修[1] THEN
+    "DB_Modbus采集".寄存器[36] := "DB_Modbus采集".寄存器[36] OR WORD#16#0001;
+END_IF;
+IF "DB_群控状态".梯是否检修[2] THEN
+    "DB_Modbus采集".寄存器[36] := "DB_Modbus采集".寄存器[36] OR WORD#16#0002;
+END_IF;
+IF "DB_群控状态".梯是否检修[3] THEN
+    "DB_Modbus采集".寄存器[36] := "DB_Modbus采集".寄存器[36] OR WORD#16#0004;
+END_IF;
+"DB_Modbus采集".寄存器[37] := WORD#16#0000;
+IF "DB_系统配置".群控允许节能待机 THEN
+    "DB_Modbus采集".寄存器[37] := "DB_Modbus采集".寄存器[37] OR WORD#16#0001;
+END_IF;
+IF "IN".自动运行信号 THEN
+    "DB_Modbus采集".寄存器[37] := "DB_Modbus采集".寄存器[37] OR WORD#16#0002;
+END_IF;
+IF "OUT".准备就绪信号 THEN
+    "DB_Modbus采集".寄存器[37] := "DB_Modbus采集".寄存器[37] OR WORD#16#0004;
+END_IF;
+"DB_Modbus采集".寄存器[38] := INT_TO_WORD("DB_系统配置".建筑最高楼层);
+"DB_Modbus采集".寄存器[39] := INT_TO_WORD("DB_系统配置".电梯总数);
