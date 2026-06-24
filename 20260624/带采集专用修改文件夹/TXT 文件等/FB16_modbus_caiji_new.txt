@@ -738,7 +738,7 @@ END_IF;
 IF "DB_系统配置".群控允许节能待机 THEN
     "DB_Modbus采集".寄存器[37] := "DB_Modbus采集".寄存器[37] OR WORD#16#0001;
 END_IF;
-IF "IN".自动运行信号 THEN
+IF "DB_系统配置".自动运行锁存 THEN
     "DB_Modbus采集".寄存器[37] := "DB_Modbus采集".寄存器[37] OR WORD#16#0002;
 END_IF;
 IF "OUT".准备就绪信号 THEN
