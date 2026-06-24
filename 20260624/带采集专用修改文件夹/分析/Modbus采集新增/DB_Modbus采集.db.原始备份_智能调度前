@@ -1,0 +1,21 @@
+﻿DATA_BLOCK "DB_Modbus采集"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+NON_RETAIN
+   STRUCT
+      寄存器 : Array[0..39] of Word;
+      连接参数 {InstructionName := 'TCON_IP_v4'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TCON_IP_v4;
+   END_STRUCT;
+
+BEGIN
+   连接参数.InterfaceId := 64;
+   连接参数.ID := 1;
+   连接参数.ConnectionType := 11;
+   连接参数.ActiveEstablished := 0;
+   连接参数.RemoteAddress.ADDR[1] := 192;
+   连接参数.RemoteAddress.ADDR[2] := 168;
+   连接参数.RemoteAddress.ADDR[3] := 0;
+   连接参数.RemoteAddress.ADDR[4] := 100;
+   连接参数.RemotePort := 0;
+   连接参数.LocalPort := 502;
+END_DATA_BLOCK

@@ -1,0 +1,14 @@
+FUNCTION_BLOCK modbus_tcp_new
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR
+      ModbusServer {InstructionName := 'MB_SERVER'; LibVersion := '1.0'} : MB_SERVER;
+   END_VAR
+
+BEGIN
+    #ModbusServer(
+        DISCONNECT := FALSE,
+        CONNECT := DB_Modbus采集.连接参数,
+        MB_HOLD_REG := P#DB1.DBX0.0 BYTE 160
+    );
+END_FUNCTION_BLOCK

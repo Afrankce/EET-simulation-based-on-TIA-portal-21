@@ -1,0 +1,9 @@
+// 在FB的Static区先建立变量：
+// ModbusServer : MB_SERVER;
+//
+// 本代码只放入FB程序体。MB_HOLD_REG从寄存器[0]开始，共80字节。
+#ModbusServer(
+    DISCONNECT := FALSE,
+    CONNECT := "DB_Modbus采集".连接参数,
+    MB_HOLD_REG := P#DB_Modbus采集.DBX0.0 BYTE 80
+);
