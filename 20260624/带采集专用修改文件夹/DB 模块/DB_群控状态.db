@@ -16,24 +16,15 @@ NON_RETAIN
       外呼上等待周期 : Array[1..9] of Int;
       外呼下等待周期 : Array[2..10] of Int;
       梯是否检修 : Array[1..3] of Bool;
-      智能帧有效 : Bool;
       智能调度允许 : Bool;
-      Python心跳超时 : Bool;
       智能降级 : Bool;
       智能错误代码 : Word;
-      Python心跳 : Word;
-      Python心跳上次 : Word;
-      Python帧序号 : Word;
-      Python预测序号 : Word;
-      Python可用度 : Int;
-      Python主场景 : Int;
       智能需求上 : Array[1..9] of Int;
       智能需求下 : Array[2..10] of Int;
-      智能权重等待 : Int;
-      智能权重距离 : Int;
-      智能权重反向 : Int;
-      智能权重启停 : Int;
-      智能权重预测 : Int;
+      上行登记数量 : Int;
+      下行登记数量 : Int;
+      最长等待时间 : Int;
+      本轮分配数量 : Array[1..3] of Int;
    END_VAR
 
 
