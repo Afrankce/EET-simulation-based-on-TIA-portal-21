@@ -1,0 +1,10 @@
+﻿DATA_BLOCK "运动控制_DB"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+"运动控制"
+
+BEGIN
+
+END_DATA_BLOCK
+
